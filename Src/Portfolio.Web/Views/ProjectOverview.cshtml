@@ -1,0 +1,19 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	Layout = "Main.cshtml";
+	
+	ViewBag.Title = "ProjectOverview";
+}
+@Model.Name
+
+@Model.Value("bodyText")
+
+<ul>
+	@foreach (var project in Model.Children)
+	{
+		<li>
+			<a href="@project.Url()">@project.Name</a>
+		</li>
+	}
+</ul>
