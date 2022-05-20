@@ -1,7 +1,0 @@
-﻿# Generic
-bin
-obj
-# Umbraco
-/Src/Portfolio.Web/wwwroot/umbraco
-/Src/Portfolio.Web/umbraco
-/Src/Portfolio.Web/Smidge
