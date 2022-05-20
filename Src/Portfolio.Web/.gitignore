@@ -1,7 +1,0 @@
-﻿# Generic
-bin
-obj
-# Umbraco
-/wwwroot/umbraco/
-/Smidge/
-/umbraco/
