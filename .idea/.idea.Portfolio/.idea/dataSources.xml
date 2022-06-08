@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="portfolio-local@hva-kaspera1.database.windows.net" uuid="76db15bc-4c0e-412a-ae90-1442178a65cc">
+    <data-source source="LOCAL" name="portfolio-local@hva-kaspera1.database.windows.net" uuid="e9d0642b-b9e5-4b00-b2f7-9e5b4c615b5d">
       <driver-ref>azure.ms</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>

@@ -1,0 +1,16 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	Layout = "Main.cshtml";
+	
+	ViewBag.Title = "Blog";
+}
+
+<ul>
+	@foreach (var article in Model.Children)
+	{
+		<li>
+			<a href="@article.Url()">@article.Name</a>
+		</li>
+	}
+</ul>
