@@ -16,6 +16,9 @@
     <ItemGroup>
       <Folder Include="Pages" />
     </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\Portfolio.Core\Portfolio.Core.csproj" />
+    </ItemGroup>
 
 
     <PropertyGroup>
@@ -24,8 +27,8 @@
 
     <!-- Keep this as false if ModelsBuilder mode is InMemoryAuto -->
     <PropertyGroup>
-        <RazorCompileOnBuild>false</RazorCompileOnBuild>
-        <RazorCompileOnPublish>false</RazorCompileOnPublish>
+        <RazorCompileOnBuild>true</RazorCompileOnBuild>
+        <RazorCompileOnPublish>true</RazorCompileOnPublish>
     </PropertyGroup>
 
 </Project>
