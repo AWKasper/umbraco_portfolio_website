@@ -1,10 +1,10 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@model Portfolio.Core.Models.ViewModels.HomeViewModel
 @{
 	Layout = "Main.cshtml";
 	
-	ViewBag.Title = "Home";
+	Model.PageTitle = "Home";
 }
-@Model.Name
+@Model.PageTitle
 
-@Model.Value("bodyText")
+@Model.BodyText

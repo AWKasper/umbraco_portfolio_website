@@ -1,10 +1,29 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Portfolio.Core.Controllers.Surface
+@using Portfolio.Core.Models.FormModels
+@model Portfolio.Core.Models.ViewModels.MainViewModel
 @{
 	Layout = "Main.cshtml";
 	
-	ViewBag.Title = "Contact";
+	Model.PageTitle = "Contact";
+	
+	var contactFormModel = new ContactFormModel();
 }
-@Model.Name
-
-@Model.Value("bodyText")
+@using (Html.BeginUmbracoForm<ContactSurfaceController>(nameof(ContactSurfaceController.Submit))) {
+	@Html.ValidationSummary()
+	<div>
+		<label>Name:</label><br />
+		@Html.TextBoxFor(e => contactFormModel.Name)
+	</div>
+	<div>
+		<label>E-mail:</label><br />
+		@Html.TextBoxFor(e => contactFormModel.Email)
+	</div>
+	<div>
+		<label>Comment:</label><br />
+		@Html.TextAreaFor(e => contactFormModel.Comment)
+	</div>
+	<div>
+		<button>Submit</button>
+	</div>
+}
