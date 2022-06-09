@@ -19,6 +19,10 @@
     <ItemGroup>
       <ProjectReference Include="..\Portfolio.Core\Portfolio.Core.csproj" />
     </ItemGroup>
+    <ItemGroup>
+      <Content Include="App_Plugins\ContactDashboard\dashboard.html" />
+      <Content Include="App_Plugins\ContactDashboard\Lang\en-us.xml" />
+    </ItemGroup>
 
 
     <PropertyGroup>
