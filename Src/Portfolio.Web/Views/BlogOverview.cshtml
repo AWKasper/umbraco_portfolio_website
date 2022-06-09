@@ -6,6 +6,8 @@
 	ViewBag.Title = "Blog";
 }
 
+@Model.Value("bodyText")
+
 <ul>
 	@foreach (var article in Model.Children)
 	{

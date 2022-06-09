@@ -5,3 +5,17 @@
 	
 	ViewBag.Title = "Article";
 }
+
+@Model.Value("title")
+
+@Model.Value("author")
+
+@{
+    var typedMediaPickerSingle = Model.Value<IPublishedContent>("authorPicture");
+    if (typedMediaPickerSingle != null)
+    {
+        <img src="@typedMediaPickerSingle.Url()" style="width:200px" alt="@typedMediaPickerSingle.Value("alt")" />
+    }
+}
+
+@Model.Value("bodyText")
