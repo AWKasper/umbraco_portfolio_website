@@ -10,7 +10,6 @@ namespace Portfolio.Core.Models.Umbraco.Components
         public void Compose(IUmbracoBuilder builder)
         {
             builder.Services.AddSingleton<ITestService, TestService>();
-            throw new System.NotImplementedException();
         }
     }
 }
