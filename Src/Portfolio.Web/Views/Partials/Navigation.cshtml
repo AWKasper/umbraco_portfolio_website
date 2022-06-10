@@ -12,28 +12,27 @@
     It also highlights the current active page/section in the navigation with the CSS class "current".
 *@
 
-@{ var selection = Model?.Content.Root().Children.Where(x => x.IsVisible(PublishedValueFallback)).ToArray();}
+@{ var selection = Model?.Content.Root().Children.Where(x => x.IsVisible(PublishedValueFallback)).ToArray(); }
 <style>
 .navbar-brand
 {
   font-family: 'Lato', sans-serif;
   font-size: 20px;
+  
   margin: 0;
 }
 </style>
 @if (selection?.Length > 0)
 {
-    <div class='container'>
-        <nav class='navbar navbar-expand navbar-grey'>
-            <ul class='navbar-nav'>
-                <a class='navbar-brand font-weight-bold' href="@Model.Content.Root().Url()">Home</a>
-                @foreach (var item in selection)
-                {
-                    <li class="@(item.IsAncestorOrSelf(Model.Content) ? "current" : null)">
-                        <a class='nav-link' href="@item.Url(PublishedUrlProvider)">@item.Name</a>
-                    </li>
-                }
-            </ul>
-        </nav>
-    </div>
+    <nav class='navbar navbar-expand navbar-dark bg-primary'>
+        <ul class='navbar-nav'>
+            <a class='navbar-brand font-weight-bold' href="@Model.Content.Root().Url()">Home</a>
+            @foreach (var item in selection)
+            {
+                <li class="@(item.IsAncestorOrSelf(Model.Content) ? "current" : null)">
+                    <a class='nav-link' href="@item.Url(PublishedUrlProvider)">@item.Name</a>
+                </li>
+            }
+        </ul>
+    </nav>
 }
