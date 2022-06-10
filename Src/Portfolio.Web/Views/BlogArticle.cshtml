@@ -1,15 +1,23 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
 @model Portfolio.Core.Models.ViewModels.BlogArticleViewModel
 @{
-	Layout = "Main.cshtml";
-	
+    Layout = "Main.cshtml";
+
     Model.PageTitle = "Article";
 }
 
-@Model.Title
+<head>
+    <title>@Model.PageTitle</title>
+    <link rel="stylesheet" href="/css/BlogArticle.css"/>
+</head>
+<body>
+<h1>@Model.Title</h1>
 
-@Model.Author
+<h6>@Model.PublishDate</h6>
 
-<img src="@Model.AuthorPicture" style="width:200px" alt="@Model.AuthorPicture" />
+<h3>@Model.Author</h3>
+
+<img class="author-picture" src="@Model.AuthorPicture" alt="@Model.AuthorPicture"/>
 
 @Model.BodyText
+</body>
