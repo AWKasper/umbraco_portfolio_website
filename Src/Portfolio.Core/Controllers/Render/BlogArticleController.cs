@@ -1,6 +1,4 @@
-﻿using System;
-using HeyRed.MarkdownSharp;
-using Microsoft.AspNetCore.Html;
+﻿using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Microsoft.Extensions.Logging;
@@ -22,6 +20,8 @@ namespace Portfolio.Core.Controllers.Render
             viewModel.Build(CurrentPage);
             viewModel.Title = new HtmlString(blogArticle.Title?.ToHtmlString() ??
                                                 string.Empty);
+            viewModel.Thumbnail = new HtmlString(blogArticle.Thumbnail.GetCropUrl() ??
+                                                     string.Empty);
             viewModel.Author = new HtmlString(blogArticle.Author?.ToHtmlString() ??
                                                 string.Empty);
             viewModel.PublishDate = new HtmlString(blogArticle.PublishDate.ToIsoString()??

@@ -1,18 +1,23 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Portfolio.Core.Models.Umbraco
+@model Portfolio.Core.Models.ViewModels.BlogOverviewViewModel
 @{
 	Layout = "Main.cshtml";
 	
-	ViewBag.Title = "Blog";
+	Model.PageTitle = "Blog";
 }
 
-@Model.Value("bodyText")
+@Model.BodyText
 
-<ul>
-	@foreach (var article in Model.Children)
+<div class="card-deck">
+	@foreach (var article in Model.Content.Children<BlogArticle>())
 	{
-		<li>
-			<a href="@article.Url()">@article.Name</a>
-		</li>
+	<div class="card">
+			<img class="card-img-top" src="@article.Thumbnail" style="width:200px" alt="@article.Thumbnail">
+			<div class="card-body">
+				<h5 class="card-title">@article.Name</h5>
+				<a href="@article.Url()" class="btn btn-primary stretched-link">Go to Article</a>
+			</div>
+		</div>
 	}
-</ul>
+</div>

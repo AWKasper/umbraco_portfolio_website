@@ -1,4 +1,4 @@
-﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+﻿@model Portfolio.Core.Models.ViewModels.MainViewModel
 @using Umbraco.Cms.Core
 @using Umbraco.Cms.Core.Models.PublishedContent
 @using Umbraco.Cms.Core.Routing
@@ -12,8 +12,11 @@
     It also highlights the current active page/section in the navigation with the CSS class "current".
 *@
 
-@{ var selection = Model.Root().Children.Where(x => x.IsVisible(PublishedValueFallback)).ToArray();}
-
+@{
+    var selection = Umbraco.ContentAtRoot().FirstOrDefault()
+        .Children()
+        .Where(x => x.IsVisible());
+}
 <style>
 .navbar-brand
 {
@@ -28,10 +31,10 @@
     <div class='container'>
         <nav class='navbar navbar-expand navbar-grey'>
             <ul class='navbar-nav'>
-                <a class='navbar-brand font-weight-bold' href="@Model.Root().Url()">Home</a>
+                <a class='navbar-brand font-weight-bold' href="@Model">Home</a>
                 @foreach (var item in selection)
                 {
-                    <li class="@(item.IsAncestorOrSelf(Model) ? "current" : null)">
+                    <li class="@(item.IsAncestorOrSelf(Model.Content) ? "current" : null)">
                         <a class='nav-link' href="@item.Url(PublishedUrlProvider)">@item.Name</a>
                     </li>
                 }

@@ -3,19 +3,13 @@
 @{
 	Layout = "Main.cshtml";
 	
-	ViewBag.Title = "Article";
+    Model.PageTitle = "Article";
 }
 
 @Model.Title
 
 @Model.Author
 
-@{
-    var typedMediaPickerSingle = Model.AuthorPicture;
-    if (typedMediaPickerSingle != null)
-    {
-        <img src="@typedMediaPickerSingle" style="width:200px" alt="@typedMediaPickerSingle" />
-    }
-}
+<img src="@Model.AuthorPicture" style="width:200px" alt="@Model.AuthorPicture" />
 
 @Model.BodyText
