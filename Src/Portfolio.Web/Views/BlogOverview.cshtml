@@ -10,8 +10,9 @@
 @Model.BodyText
 
 <div class="card-deck">
-	@foreach (var article in Model.Content.Children<BlogArticle>())
+	@foreach (var articles in Model.Children)
 	{
+		var article = (BlogArticle)articles;
 		<div class="card">
 			<img class="card-img-top" src="@article.Thumbnail.Url()" style="width:200px" alt="@article.Thumbnail.Name">
 			<div class="card-body">
