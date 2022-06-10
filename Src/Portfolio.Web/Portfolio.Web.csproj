@@ -13,6 +13,16 @@
         <PackageReference Include="Microsoft.ICU.ICU4C.Runtime" Version="68.2.0.9" />
         <RuntimeHostConfigurationOption Include="System.Globalization.AppLocalIcu" Value="68.2.0.9" Condition="$(RuntimeIdentifier.StartsWith('linux')) Or $(RuntimeIdentifier.StartsWith('win')) Or ('$(RuntimeIdentifier)' == '' And !$([MSBuild]::IsOSPlatform('osx')))" />
     </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Pages" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\Portfolio.Core\Portfolio.Core.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="App_Plugins\ContactDashboard\dashboard.html" />
+      <Content Include="App_Plugins\ContactDashboard\Lang\en-us.xml" />
+    </ItemGroup>
 
 
     <PropertyGroup>
@@ -21,8 +31,8 @@
 
     <!-- Keep this as false if ModelsBuilder mode is InMemoryAuto -->
     <PropertyGroup>
-        <RazorCompileOnBuild>false</RazorCompileOnBuild>
-        <RazorCompileOnPublish>false</RazorCompileOnPublish>
+        <RazorCompileOnBuild>true</RazorCompileOnBuild>
+        <RazorCompileOnPublish>true</RazorCompileOnPublish>
     </PropertyGroup>
 
 </Project>
