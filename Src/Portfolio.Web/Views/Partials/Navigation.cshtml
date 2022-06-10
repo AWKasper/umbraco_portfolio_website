@@ -12,11 +12,7 @@
     It also highlights the current active page/section in the navigation with the CSS class "current".
 *@
 
-@{
-    var selection = Umbraco.ContentAtRoot().FirstOrDefault()
-        .Children()
-        .Where(x => x.IsVisible());
-}
+@{ var selection = Model?.Content.Root().Children.Where(x => x.IsVisible(PublishedValueFallback)).ToArray();}
 <style>
 .navbar-brand
 {
@@ -25,13 +21,12 @@
   margin: 0;
 }
 </style>
-
 @if (selection?.Length > 0)
 {
     <div class='container'>
         <nav class='navbar navbar-expand navbar-grey'>
             <ul class='navbar-nav'>
-                <a class='navbar-brand font-weight-bold' href="@Model">Home</a>
+                <a class='navbar-brand font-weight-bold' href="@Model.Content.Root().Url()">Home</a>
                 @foreach (var item in selection)
                 {
                     <li class="@(item.IsAncestorOrSelf(Model.Content) ? "current" : null)">
