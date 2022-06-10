@@ -1,21 +1,21 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@model Portfolio.Core.Models.ViewModels.BlogArticleViewModel
 @{
 	Layout = "Main.cshtml";
 	
 	ViewBag.Title = "Article";
 }
 
-@Model.Value("title")
+@Model.Title
 
-@Model.Value("author")
+@Model.Author
 
 @{
-    var typedMediaPickerSingle = Model.Value<IPublishedContent>("authorPicture");
+    var typedMediaPickerSingle = Model.AuthorPicture;
     if (typedMediaPickerSingle != null)
     {
-        <img src="@typedMediaPickerSingle.Url()" style="width:200px" alt="@typedMediaPickerSingle.Value("alt")" />
+        <img src="@typedMediaPickerSingle" style="width:200px" alt="@typedMediaPickerSingle" />
     }
 }
 
-@Model.Value("bodyText")
+@Model.BodyText
