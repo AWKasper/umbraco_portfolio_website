@@ -1,13 +1,12 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@model Portfolio.Core.Models.ViewModels.ProjectOverviewViewModel
 @{
 	Layout = "Main.cshtml";
 	
 	ViewBag.Title = "ProjectOverview";
 }
-@Model.Name
 
-@Model.Value("bodyText")
+@Model.BodyText
 
 <ul>
 	@foreach (var project in Model.Children)

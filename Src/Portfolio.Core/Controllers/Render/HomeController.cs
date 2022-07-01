@@ -5,7 +5,6 @@ using Microsoft.Extensions.Logging;
 using Portfolio.Core.Extensions;
 using Portfolio.Core.Models.Umbraco;
 using Portfolio.Core.Models.ViewModels;
-using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Web;
 using Umbraco.Cms.Web.Common.Controllers;
 
