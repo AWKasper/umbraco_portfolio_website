@@ -3,8 +3,15 @@
 @{
 	Layout = "Main.cshtml";
 	
-	ViewBag.Title = "ProjectOverview";
+	Model.PageTitle = "ProjectOverview";
 }
+
+<head>
+    <title>@Model.PageTitle</title>
+    <link rel="stylesheet" href="/css/ProjectOverview.css"/>
+</head>
+
+<body>
 
 @Model.BodyText
 
@@ -16,3 +23,5 @@
 		</li>
 	}
 </ul>
+
+</body>

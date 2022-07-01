@@ -10,20 +10,20 @@ using Umbraco.Cms.Web.Common.Controllers;
 
 namespace Portfolio.Core.Controllers.Render
 {
-    public class ProjectDetailController : RenderController
+    public class ContactController : RenderController
     {
         
-        public IActionResult ProjectDetail()
+        public IActionResult Contact()
         {
-            var projectDetail = (ProjectDetail)CurrentPage;
-            var viewModel = new ProjectDetailViewModel();
+            var contact = (Contact)CurrentPage;
+            var viewModel = new ContactViewModel();
             viewModel.Build(CurrentPage);
-            viewModel.BodyText = new HtmlString(projectDetail.BodyText?.ToHtmlString() ??
+            viewModel.BodyText = new HtmlString(contact.BodyText?.ToHtmlString() ??
                                                 string.Empty);
             return CurrentTemplate(viewModel);
         }
         
-        public ProjectDetailController(ILogger<RenderController> logger, ICompositeViewEngine compositeViewEngine, IUmbracoContextAccessor umbracoContextAccessor) : base(logger, compositeViewEngine, umbracoContextAccessor)
+        public ContactController(ILogger<RenderController> logger, ICompositeViewEngine compositeViewEngine, IUmbracoContextAccessor umbracoContextAccessor) : base(logger, compositeViewEngine, umbracoContextAccessor)
         {
         }
     }

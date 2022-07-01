@@ -1,7 +1,7 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
 @using Portfolio.Core.Controllers.Surface
 @using Portfolio.Core.Models.FormModels
-@model Portfolio.Core.Models.ViewModels.MainViewModel
+@model Portfolio.Core.Models.ViewModels.ContactViewModel
 @{
 	Layout = "Main.cshtml";
 	
@@ -9,21 +9,34 @@
 	
 	var contactFormModel = new ContactFormModel();
 }
-@using (Html.BeginUmbracoForm<ContactSurfaceController>(nameof(ContactSurfaceController.Submit))) {
+
+<head>
+	<title>@Model.PageTitle</title>
+	<link rel="stylesheet" href="/css/AboutMe.css"/>
+</head>
+
+<body>
+
+@Model.BodyText
+
+@using (Html.BeginUmbracoForm<ContactSurfaceController>(nameof(ContactSurfaceController.Submit)))
+{
 	@Html.ValidationSummary()
 	<div>
-		<label>Name:</label><br />
+		<label>Name:</label><br/>
 		@Html.TextBoxFor(e => contactFormModel.Name)
 	</div>
 	<div>
-		<label>E-mail:</label><br />
+		<label>E-mail:</label><br/>
 		@Html.TextBoxFor(e => contactFormModel.Email)
 	</div>
 	<div>
-		<label>Comment:</label><br />
+		<label>Comment:</label><br/>
 		@Html.TextAreaFor(e => contactFormModel.Comment)
 	</div>
 	<div>
 		<button>Submit</button>
 	</div>
 }
+
+</body>

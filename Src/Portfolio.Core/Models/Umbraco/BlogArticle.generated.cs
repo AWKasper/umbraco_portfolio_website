@@ -58,22 +58,13 @@ namespace Portfolio.Core.Models.Umbraco
 		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString Author => this.Value<global::Umbraco.Cms.Core.Strings.IHtmlEncodedString>(_publishedValueFallback, "author");
 
 		///<summary>
-		/// author picture
+		/// Author Picture
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.5.0+1c39c27e220efde6f0f360b94b6e7b6a1f0f0e59")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("authorPicture")]
 		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops AuthorPicture => this.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(_publishedValueFallback, "authorPicture");
 
-		///<summary>
-		/// thumbnail
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.5.0+1c39c27e220efde6f0f360b94b6e7b6a1f0f0e59")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("thumbnail")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops Thumbnail => this.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(_publishedValueFallback, "thumbnail");
-
-		
 		///<summary>
 		/// Body Text: markdown
 		///</summary>
@@ -88,6 +79,14 @@ namespace Portfolio.Core.Models.Umbraco
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.5.0+1c39c27e220efde6f0f360b94b6e7b6a1f0f0e59")]
 		[ImplementPropertyType("publishDate")]
 		public virtual global::System.DateTime PublishDate => this.Value<global::System.DateTime>(_publishedValueFallback, "publishDate");
+
+		///<summary>
+		/// Thumbnail: Thumbnail
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.5.0+1c39c27e220efde6f0f360b94b6e7b6a1f0f0e59")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("thumbnail")]
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops Thumbnail => this.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(_publishedValueFallback, "thumbnail");
 
 		///<summary>
 		/// Title
