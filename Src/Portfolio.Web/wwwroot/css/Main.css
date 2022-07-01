@@ -1,0 +1,14 @@
+.navbar-brand {
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    
+    margin: 0 1rem;
+}
+
+.navbar-nav {
+    margin: 0 5rem;
+}
+
+.navbar-nav > .current > .nav-link {
+    color: #ebebf1;
+}

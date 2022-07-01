@@ -13,15 +13,7 @@
 *@
 
 @{ var selection = Model?.Content.Root().Children.Where(x => x.IsVisible(PublishedValueFallback)).ToArray(); }
-<style>
-.navbar-brand
-{
-  font-family: 'Lato', sans-serif;
-  font-size: 20px;
-  
-  margin: 0;
-}
-</style>
+
 @if (selection?.Length > 0)
 {
     <nav class='navbar navbar-expand navbar-dark bg-primary'>
