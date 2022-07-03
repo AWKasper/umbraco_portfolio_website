@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.Linq;
+using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Microsoft.Extensions.Logging;
@@ -18,24 +20,21 @@ namespace Portfolio.Core.Controllers.Render
 
         private List<IPublishedContent> Recurrent(IPublishedContent currentNode, List<IPublishedContent> nodes, string search)
         {
-
+        
             foreach (var property in currentNode.Properties)
             {
-                if (!property.GetValue().ToString()!.Contains(search)) continue;
+                if (!currentNode.Value(property.Alias).ToString()!.ToLower().Contains(search.ToLower())) continue;
                 nodes.Add(currentNode);
                 break;
             }
             
             if (currentNode.Children != null)
             {
-                nodes.AddRange(currentNode.Children);
-
                 foreach (var child in currentNode.Children)
                 {
                     Recurrent(child, nodes, search);
                 }
             }
-
             return nodes;
         }
         
@@ -46,10 +45,13 @@ namespace Portfolio.Core.Controllers.Render
             viewModel.Build(CurrentPage);
             
             var children = new List<IPublishedContent>();
-
-            children = Recurrent(viewModel.Content.Root(), children, query);
-            
+            if (query != null)
+            {
+                children = Recurrent(viewModel.Content.Root(), children, query);
+            }
             viewModel.Results = children;
+
+            viewModel.Search = new HtmlString(query);
 
             return CurrentTemplate(viewModel);
         }

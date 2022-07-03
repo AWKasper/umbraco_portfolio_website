@@ -1,5 +1,7 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Routing
 @model Portfolio.Core.Models.ViewModels.SearchViewModel
+@inject IPublishedUrlProvider PublishedUrlProvider
 @{
     Layout = "Main.cshtml";
     
@@ -13,12 +15,25 @@
 
 <body>
 
-<form>
+<form action="/search/" method="GET">
     <div class="mb-3">
-        <label for="search" class="form-label">Search input</label>
-        <input type="search" class="form-control" id="search">
+        <label for="query" class="form-label">Search input</label>
+        <input type="text" class="form-control" id="query" name="query" placeholder="Search...">
     </div>
     <button type="submit" class="btn btn-primary">Search</button>
 </form>
+
+@if (Model.Search.ToString().Length > 0)
+{
+    <label>Showing results for @Model.Search:</label>
+    @foreach (var item in Model.Results)
+    {
+        <li>
+            <a class='nav-link' href="@item.Url(PublishedUrlProvider)">@item.Name</a>
+        </li>
+    }
+
+}
+
 
 </body>
