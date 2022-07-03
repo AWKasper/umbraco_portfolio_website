@@ -10,21 +10,21 @@ using Umbraco.Cms.Web.Common.Controllers;
 
 namespace Portfolio.Core.Controllers.Render
 {
-    public class HomeController: RenderController
+    public class AboutMeController : RenderController
     {
-        public IActionResult Home()
+        
+        public IActionResult AboutMe()
         {
-            var home = (Home)CurrentPage;
-            var viewModel = new HomeViewModel();
+            var aboutMe = (AboutMe)CurrentPage;
+            var viewModel = new AboutMeViewModel();
             viewModel.Build(CurrentPage);
-            viewModel.BodyText = new HtmlString(home.BodyText?.ToHtmlString() ??
+            viewModel.BodyText = new HtmlString(aboutMe.BodyText?.ToHtmlString() ??
                                                 string.Empty);
             return CurrentTemplate(viewModel);
         }
         
-        public HomeController(ILogger<RenderController> logger, ICompositeViewEngine compositeViewEngine, IUmbracoContextAccessor umbracoContextAccessor) : base(logger, compositeViewEngine, umbracoContextAccessor)
+        public AboutMeController(ILogger<RenderController> logger, ICompositeViewEngine compositeViewEngine, IUmbracoContextAccessor umbracoContextAccessor) : base(logger, compositeViewEngine, umbracoContextAccessor)
         {
-            
         }
     }
 }

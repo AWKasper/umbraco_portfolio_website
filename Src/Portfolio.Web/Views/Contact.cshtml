@@ -1,29 +1,86 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
 @using Portfolio.Core.Controllers.Surface
 @using Portfolio.Core.Models.FormModels
-@model Portfolio.Core.Models.ViewModels.MainViewModel
+@using System.Drawing.Printing
+@model Portfolio.Core.Models.ViewModels.ContactViewModel
 @{
-	Layout = "Main.cshtml";
-	
-	Model.PageTitle = "Contact";
-	
-	var contactFormModel = new ContactFormModel();
+    Layout = "Main.cshtml";
+
+    Model.PageTitle = "Contact";
+
+    var contactFormModel = new ContactFormModel();
 }
-@using (Html.BeginUmbracoForm<ContactSurfaceController>(nameof(ContactSurfaceController.Submit))) {
-	@Html.ValidationSummary()
-	<div>
-		<label>Name:</label><br />
-		@Html.TextBoxFor(e => contactFormModel.Name)
-	</div>
-	<div>
-		<label>E-mail:</label><br />
-		@Html.TextBoxFor(e => contactFormModel.Email)
-	</div>
-	<div>
-		<label>Comment:</label><br />
-		@Html.TextAreaFor(e => contactFormModel.Comment)
-	</div>
-	<div>
-		<button>Submit</button>
-	</div>
+
+<head>
+    <title>@Model.PageTitle</title>
+    <link rel="stylesheet" href="/css/AboutMe.css"/>
+</head>
+
+<body>
+
+
+@Model.BodyText
+
+@* <div class="container py-4"> *@
+@* *@
+@*     <!-- Bootstrap 5 starter form --> *@
+@*     <form id="contactForm"> *@
+@* *@
+@*         <!-- Name input --> *@
+@*         <div class="mb-3"> *@
+@*             <label class="form-label" for="name">Name</label> *@
+@*             <input class="form-control" id="name" type="text" placeholder="Name"/> *@
+@*         </div> *@
+@* *@
+@*         <!-- Email address input --> *@
+@*         <div class="mb-3"> *@
+@*             <label class="form-label" for="emailAddress">Email Address</label> *@
+@*             <input class="form-control" id="emailAddress" type="email" placeholder="Email Address"/> *@
+@*         </div> *@
+@* *@
+@*         <!-- Message input --> *@
+@*         <div class="mb-3"> *@
+@*             <label class="form-label" for="message">Message</label> *@
+@*             <textarea class="form-control" id="message" type="text" placeholder="Message" style="height: 10rem;"></textarea> *@
+@*         </div> *@
+@* *@
+@*         <!-- Form submit button --> *@
+@*         <div class="d-grid"> *@
+@*             <button class="btn btn-primary btn-lg" type="submit">Submit</button> *@
+@*         </div> *@
+@* *@
+@*     </form> *@
+@* *@
+@* </div> *@
+
+
+@using (Html.BeginUmbracoForm<ContactSurfaceController>(nameof(ContactSurfaceController.Submit)))
+{
+    <div class="container py-4">
+
+        @if (!Html.ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger">
+                @Html.ValidationSummary()
+            </div>
+        }
+
+        <div class="mb-3">
+            <label class="form-label" for="name">Name:</label><br/>
+            @Html.TextBoxFor(e => contactFormModel.Name, new { @class = "form-control" })
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="emailAddress">E-mail:</label><br/>
+            @Html.TextBoxFor(e => contactFormModel.Email, new { @class = "form-control" })
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="message">Message</label><br/>
+            @Html.TextAreaFor(e => contactFormModel.Comment, new { @class = "form-control" })
+        </div>
+        <div>
+            <button class="btn btn-primary">Submit</button>
+        </div>
+    </div>
 }
+
+</body>

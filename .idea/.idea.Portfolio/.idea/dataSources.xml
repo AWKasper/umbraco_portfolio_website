@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:sqlserver://hva-kaspera1.database.windows.net:1433;database=portfolio-local;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="portfolio-live@hva-kaspera1.database.windows.net" uuid="5dfaa9c7-889e-487d-87f6-363154c1795e">
+      <driver-ref>azure.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://hva-kaspera1.database.windows.net:1433;database=portfolio-live;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
