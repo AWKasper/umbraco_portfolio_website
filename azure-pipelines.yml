@@ -2,7 +2,7 @@
 # - BuildConfiguration
 name: $(date:yyyyMMdd)-$(rev:r)
 jobs:
-  - job: Job_1
+- job: Job_1
   displayName: Agent job 1
   pool:
     name: Azure Pipelines
