@@ -1,0 +1,24 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@model Portfolio.Core.Models.ViewModels.SearchViewModel
+@{
+    Layout = "Main.cshtml";
+    
+    Model.PageTitle = "Search";
+}
+
+
+<head>
+    <title>@Model.PageTitle</title>
+</head>
+
+<body>
+
+<form>
+    <div class="mb-3">
+        <label for="search" class="form-label">Search input</label>
+        <input type="search" class="form-control" id="search">
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
+</body>
