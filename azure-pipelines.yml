@@ -1,0 +1,27 @@
+# Variables:
+# - BuildConfiguration
+name: $(date:yyyyMMdd)-$(rev:r)
+jobs:
+  - job: Job_1
+displayName: Agent job 1
+pool:
+name: Azure Pipelines
+vmImage: windows-latest
+variables:
+BuildConfiguration: Release
+steps:
+  - checkout: self
+submodules: true
+  - task: DotNetCoreCLI@2
+displayName: Build Project
+inputs:
+command: publish
+publishWebProjects: True
+arguments: '--configuration $(BuildConfiguration) --runtime win-x86 --
+self-contained --output $(Build.ArtifactStagingDirectory)'
+zipAfterPublish: True
+  - task: PublishBuildArtifacts@1
+displayName: Publish Artifact
+inputs:
+PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+ArtifactName: 'auto-release'
