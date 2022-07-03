@@ -1,5 +1,8 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@using Umbraco.Cms.Core.Routing
 @model Portfolio.Core.Models.ViewModels.BlogArticleViewModel
+
+@inject IPublishedUrlProvider PublishedUrlProvider
 @{
     Layout = "Main.cshtml";
 
@@ -20,4 +23,13 @@
 <img class="author-picture" src="@Model.AuthorPicture" alt="@Model.AuthorPicture"/>
 
 @Model.BodyText
+
+@{
+    var typedMultiNodeTreePicker = Model.MultiNode;
+    foreach (var item in typedMultiNodeTreePicker)
+    {
+        <a class='nav-link' href="@item.Url(PublishedUrlProvider)">@item.Name</a>
+    }
+}
+
 </body>
