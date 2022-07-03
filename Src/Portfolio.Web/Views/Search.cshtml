@@ -4,7 +4,7 @@
 @inject IPublishedUrlProvider PublishedUrlProvider
 @{
     Layout = "Main.cshtml";
-    
+
     Model.PageTitle = "Search";
 }
 
@@ -15,25 +15,28 @@
 
 <body>
 
-<form action="/search/" method="GET">
-    <div class="mb-3">
-        <label for="query" class="form-label">Search input</label>
-        <input type="text" class="form-control" id="query" name="query" placeholder="Search...">
-    </div>
-    <button type="submit" class="btn btn-primary">Search</button>
-</form>
+<div class="container py-4">
+    <form action="/search/" method="GET">
+        <div class="mb-3">
+            <label for="query" class="form-label">Search input</label>
+            <input type="text" class="form-control" id="query" name="query" placeholder="Search...">
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
 
-@if (Model.Search.ToString().Length > 0)
-{
-    <label>Showing results for @Model.Search:</label>
-    @foreach (var item in Model.Results)
+    @if (Model.Search.ToString().Length > 0)
     {
-        <li>
-            <a class='nav-link' href="@item.Url(PublishedUrlProvider)">@item.Name</a>
-        </li>
+        <label>Showing results for "@Model.Search":</label>
+        <ul>
+            @foreach (var item in Model.Results)
+            {
+                <li>
+                    <a class='nav-link' href="@item.Url(PublishedUrlProvider)">@item.Name</a>
+                </li>
+            }
+        </ul>
     }
 
-}
-
+</div>
 
 </body>

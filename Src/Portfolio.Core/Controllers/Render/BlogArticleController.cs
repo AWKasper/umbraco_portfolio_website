@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Html;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewEngines;
 using Microsoft.Extensions.Logging;
 using Portfolio.Core.Extensions;
 using Portfolio.Core.Models.Umbraco;
 using Portfolio.Core.Models.ViewModels;
+using Umbraco.Cms.Core.Models.PublishedContent;
 using Umbraco.Cms.Core.Web;
 using Umbraco.Cms.Web.Common.Controllers;
 using Umbraco.Extensions;
@@ -30,6 +32,7 @@ namespace Portfolio.Core.Controllers.Render
                                                 string.Empty);
             viewModel.BodyText = new HtmlString(blogArticle.BodyText?.ToHtmlString() ??
                                                 string.Empty);
+            viewModel.MultiNode = blogArticle.MultiNode as List<IPublishedContent>;
             return CurrentTemplate(viewModel);
         }
         

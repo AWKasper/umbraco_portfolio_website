@@ -18,7 +18,9 @@ namespace Portfolio.Core.Controllers.Render
             var projectDetail = (ProjectDetail)CurrentPage;
             var viewModel = new ProjectDetailViewModel();
             viewModel.Build(CurrentPage);
-            viewModel.BodyText = new HtmlString(projectDetail.BodyText?.ToHtmlString() ??
+            viewModel.Title = new HtmlString(projectDetail.Title?.ToHtmlString() ??
+                                               string.Empty);
+            viewModel.Project = new HtmlString(projectDetail.Project?.ToHtmlString() ??
                                                 string.Empty);
             return CurrentTemplate(viewModel);
         }
