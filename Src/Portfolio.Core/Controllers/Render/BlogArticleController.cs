@@ -26,8 +26,7 @@ namespace Portfolio.Core.Controllers.Render
                                                      string.Empty);
             viewModel.Author = new HtmlString(blogArticle.Author?.ToHtmlString() ??
                                                 string.Empty);
-            viewModel.PublishDate = new HtmlString(blogArticle.PublishDate.ToLongDateString()??
-                                                   string.Empty);
+            viewModel.PublishDate = new HtmlString(blogArticle.PublishDate.ToLongDateString());
             viewModel.AuthorPicture = new HtmlString(blogArticle.AuthorPicture?.GetCropUrl() ??
                                                 string.Empty);
             viewModel.BodyText = new HtmlString(blogArticle.BodyText?.ToHtmlString() ??

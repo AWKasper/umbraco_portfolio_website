@@ -16,7 +16,7 @@
 
 <h1>@Model.Title</h1>
 
-<h6>@Model.PublishDate</h6>
+<h6>Published at: @Model.PublishDate, last edited at: @Model.Content.UpdateDate.</h6>
 
 <h3>@Model.Author</h3>
 
@@ -24,8 +24,12 @@
 
 @Model.BodyText
 
-@{
-    var typedMultiNodeTreePicker = Model.MultiNode;
+
+
+@{ var typedMultiNodeTreePicker = Model?.MultiNode; }
+
+@if (typedMultiNodeTreePicker?.Count > 0)
+{
     foreach (var item in typedMultiNodeTreePicker)
     {
         <a class='nav-link' href="@item.Url(PublishedUrlProvider)">@item.Name</a>
