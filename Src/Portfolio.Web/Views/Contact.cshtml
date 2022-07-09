@@ -9,12 +9,11 @@
     var contactFormModel = new ContactFormModel();
 }
 
-<head>
-    <title>@Model.PageTitle</title>
-    <link rel="stylesheet" href="/css/AboutMe.css"/>
-</head>
+@section meta
+{
+    <link rel="stylesheet" href="/css/Contact.css"/>
+}
 
-<body>
 
 @Model.BodyText
 
@@ -46,5 +45,3 @@
         </div>
     </div>
 }
-
-</body>

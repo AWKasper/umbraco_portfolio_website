@@ -4,13 +4,10 @@
 	Layout = "Main.cshtml";
 }
 
-<head>
-	<title>@Model.PageTitle</title>
-	<link rel="stylesheet" href="/css/AboutMe.css"/>
-</head>
+@section meta
+{
+    <link rel="stylesheet" href="/css/AboutMe.css"/>
+}
 
-<body>
 
 @Model.BodyText
-
-</body>

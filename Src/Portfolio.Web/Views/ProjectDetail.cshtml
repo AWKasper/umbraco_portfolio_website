@@ -4,15 +4,13 @@
 	Layout = "Main.cshtml";
 }
 
-<head>
-	<title>@Model.PageTitle</title>
-	<link rel="stylesheet" href="/css/ProjectDetail.css"/>
-</head>
+@section meta
+{
+    <meta name="author" content="@Model.Author.Value?.Remove(0, 3).Remove(@Model.Author.Value.Length-7)">
+    <link rel="stylesheet" href="/css/ProjectDetail.css"/>
+}
 
-<body>
 
 @Model.Title
 
 @Model.Project
-
-</body>

@@ -20,6 +20,8 @@ namespace Portfolio.Core.Controllers.Render
             viewModel.Build(CurrentPage);
             viewModel.Title = new HtmlString(projectDetail.Title?.ToHtmlString() ??
                                                string.Empty);
+            viewModel.Author = new HtmlString(projectDetail.Author?.ToHtmlString() ??
+                                             string.Empty);
             viewModel.Project = new HtmlString(projectDetail.Project?.ToHtmlString() ??
                                                 string.Empty);
             return CurrentTemplate(viewModel);

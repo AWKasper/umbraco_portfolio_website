@@ -7,11 +7,13 @@
     Layout = "Main.cshtml";
 }
 
-<head>
-    <title>@Model.PageTitle</title>
+@section meta
+{
+    <meta name="author" content="@Model.Author.Value?.Remove(0, 3).Remove(@Model.Author.Value.Length-7)">
     <link rel="stylesheet" href="/css/BlogArticle.css"/>
-</head>
-<body>
+}
+
+
 <h1>@Model.Title</h1>
 
 <h6>@Model.PublishDate</h6>
@@ -29,5 +31,3 @@
         <a class='nav-link' href="@item.Url(PublishedUrlProvider)">@item.Name</a>
     }
 }
-
-</body>
