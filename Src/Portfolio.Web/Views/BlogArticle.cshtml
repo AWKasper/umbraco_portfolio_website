@@ -11,8 +11,12 @@
 {
     <meta name="description" content="@Model.MetaDescription">
     <meta name="author" content="@Model.Author.Value?.Remove(0, 3).Remove(@Model.Author.Value.Length - 7)">
-    <meta name="og:image" content="@Model.Thumbnail">
-    <meta name="og:description" content="@Model.MetaDescription">
+    <meta property="og:image" content="@Model.Thumbnail">
+    <meta property="og:description" content="@Model.MetaDescription">
+    <meta property="og:type" content="article">
+    <meta property="article:author" content="@Model.Author">
+    <meta property="article:published_time" content="@Model.Content.CreateDate">
+    <meta property="article:modified_time" content="@Model.Content.UpdateDate">
     <link rel="stylesheet" href="/css/BlogArticle.css"/>
 }
 
