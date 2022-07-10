@@ -20,7 +20,7 @@ namespace Portfolio.Core.Models.Umbraco
 {
 	/// <summary>Contact</summary>
 	[PublishedModel("contact")]
-	public partial class Contact : PublishedContentModel
+	public partial class Contact : PublishedContentModel, IMetaData
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
@@ -56,5 +56,21 @@ namespace Portfolio.Core.Models.Umbraco
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("bodyText")]
 		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString BodyText => this.Value<global::Umbraco.Cms.Core.Strings.IHtmlEncodedString>(_publishedValueFallback, "bodyText");
+
+		///<summary>
+		/// MetaDescription: description
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.5.0+1c39c27e220efde6f0f360b94b6e7b6a1f0f0e59")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("metaDescription")]
+		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString MetaDescription => global::Portfolio.Core.Models.Umbraco.MetaData.GetMetaDescription(this, _publishedValueFallback);
+
+		///<summary>
+		/// MetaImage: image
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.5.0+1c39c27e220efde6f0f360b94b6e7b6a1f0f0e59")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("metaImage")]
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops MetaImage => global::Portfolio.Core.Models.Umbraco.MetaData.GetMetaImage(this, _publishedValueFallback);
 	}
 }

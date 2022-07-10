@@ -18,14 +18,29 @@ using Umbraco.Extensions;
 
 namespace Portfolio.Core.Models.Umbraco
 {
-	/// <summary>ProjectDetail</summary>
-	[PublishedModel("projectDetail")]
-	public partial class ProjectDetail : PublishedContentModel, IMetaData
+	// Mixin Content Type with alias "metaData"
+	/// <summary>MetaData</summary>
+	public partial interface IMetaData : IPublishedContent
+	{
+		/// <summary>MetaDescription</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.5.0+1c39c27e220efde6f0f360b94b6e7b6a1f0f0e59")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		global::Umbraco.Cms.Core.Strings.IHtmlEncodedString MetaDescription { get; }
+
+		/// <summary>MetaImage</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.5.0+1c39c27e220efde6f0f360b94b6e7b6a1f0f0e59")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		global::Umbraco.Cms.Core.Models.MediaWithCrops MetaImage { get; }
+	}
+
+	/// <summary>MetaData</summary>
+	[PublishedModel("metaData")]
+	public partial class MetaData : PublishedContentModel, IMetaData
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.5.0+1c39c27e220efde6f0f360b94b6e7b6a1f0f0e59")]
-		public new const string ModelTypeAlias = "projectDetail";
+		public new const string ModelTypeAlias = "metaData";
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.5.0+1c39c27e220efde6f0f360b94b6e7b6a1f0f0e59")]
 		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.5.0+1c39c27e220efde6f0f360b94b6e7b6a1f0f0e59")]
@@ -34,14 +49,14 @@ namespace Portfolio.Core.Models.Umbraco
 			=> PublishedModelUtility.GetModelContentType(publishedSnapshotAccessor, ModelItemType, ModelTypeAlias);
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.5.0+1c39c27e220efde6f0f360b94b6e7b6a1f0f0e59")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<ProjectDetail, TValue>> selector)
+		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<MetaData, TValue>> selector)
 			=> PublishedModelUtility.GetModelPropertyType(GetModelContentType(publishedSnapshotAccessor), selector);
 #pragma warning restore 0109
 
 		private IPublishedValueFallback _publishedValueFallback;
 
 		// ctor
-		public ProjectDetail(IPublishedContent content, IPublishedValueFallback publishedValueFallback)
+		public MetaData(IPublishedContent content, IPublishedValueFallback publishedValueFallback)
 			: base(content, publishedValueFallback)
 		{
 			_publishedValueFallback = publishedValueFallback;
@@ -50,36 +65,17 @@ namespace Portfolio.Core.Models.Umbraco
 		// properties
 
 		///<summary>
-		/// Author: author
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.5.0+1c39c27e220efde6f0f360b94b6e7b6a1f0f0e59")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("author")]
-		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString Author => this.Value<global::Umbraco.Cms.Core.Strings.IHtmlEncodedString>(_publishedValueFallback, "author");
-
-		///<summary>
-		/// Project: project
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.5.0+1c39c27e220efde6f0f360b94b6e7b6a1f0f0e59")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("project")]
-		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString Project => this.Value<global::Umbraco.Cms.Core.Strings.IHtmlEncodedString>(_publishedValueFallback, "project");
-
-		///<summary>
-		/// Title: title
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.5.0+1c39c27e220efde6f0f360b94b6e7b6a1f0f0e59")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("title")]
-		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString Title => this.Value<global::Umbraco.Cms.Core.Strings.IHtmlEncodedString>(_publishedValueFallback, "title");
-
-		///<summary>
 		/// MetaDescription: description
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.5.0+1c39c27e220efde6f0f360b94b6e7b6a1f0f0e59")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("metaDescription")]
-		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString MetaDescription => global::Portfolio.Core.Models.Umbraco.MetaData.GetMetaDescription(this, _publishedValueFallback);
+		public virtual global::Umbraco.Cms.Core.Strings.IHtmlEncodedString MetaDescription => GetMetaDescription(this, _publishedValueFallback);
+
+		/// <summary>Static getter for MetaDescription</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.5.0+1c39c27e220efde6f0f360b94b6e7b6a1f0f0e59")]
+		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		public static global::Umbraco.Cms.Core.Strings.IHtmlEncodedString GetMetaDescription(IMetaData that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Strings.IHtmlEncodedString>(publishedValueFallback, "metaDescription");
 
 		///<summary>
 		/// MetaImage: image
@@ -87,6 +83,11 @@ namespace Portfolio.Core.Models.Umbraco
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.5.0+1c39c27e220efde6f0f360b94b6e7b6a1f0f0e59")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		[ImplementPropertyType("metaImage")]
-		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops MetaImage => global::Portfolio.Core.Models.Umbraco.MetaData.GetMetaImage(this, _publishedValueFallback);
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops MetaImage => GetMetaImage(this, _publishedValueFallback);
+
+		/// <summary>Static getter for MetaImage</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.5.0+1c39c27e220efde6f0f360b94b6e7b6a1f0f0e59")]
+		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		public static global::Umbraco.Cms.Core.Models.MediaWithCrops GetMetaImage(IMetaData that, IPublishedValueFallback publishedValueFallback) => that.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(publishedValueFallback, "metaImage");
 	}
 }

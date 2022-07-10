@@ -9,7 +9,10 @@
 
 @section meta
 {
-    <meta name="author" content="@Model.Author.Value?.Remove(0, 3).Remove(@Model.Author.Value.Length-7)">
+    <meta name="description" content="@Model.MetaDescription">
+    <meta name="author" content="@Model.Author.Value?.Remove(0, 3).Remove(@Model.Author.Value.Length - 7)">
+    <meta name="og:image" content="@Model.Thumbnail">
+    <meta name="og:description" content="@Model.MetaDescription">
     <link rel="stylesheet" href="/css/BlogArticle.css"/>
 }
 
@@ -23,8 +26,6 @@
 <img class="author-picture" src="@Model.AuthorPicture" alt="@Model.AuthorPicture"/>
 
 @Model.BodyText
-
-
 
 @{ var typedMultiNodeTreePicker = Model?.MultiNode; }
 

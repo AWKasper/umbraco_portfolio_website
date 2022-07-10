@@ -32,6 +32,10 @@ namespace Portfolio.Core.Controllers.Render
             viewModel.BodyText = new HtmlString(blogArticle.BodyText?.ToHtmlString() ??
                                                 string.Empty);
             viewModel.MultiNode = blogArticle.MultiNode as List<IPublishedContent>;
+            viewModel.MetaDescription = new HtmlString(blogArticle.MetaDescription?.ToHtmlString() ??
+                                                       string.Empty);
+            viewModel.MetaImage = new HtmlString(blogArticle.MetaImage?.GetCropUrl() ??
+                                                 string.Empty);
             return CurrentTemplate(viewModel);
         }
         

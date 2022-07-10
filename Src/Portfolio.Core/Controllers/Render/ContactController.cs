@@ -7,6 +7,7 @@ using Portfolio.Core.Models.Umbraco;
 using Portfolio.Core.Models.ViewModels;
 using Umbraco.Cms.Core.Web;
 using Umbraco.Cms.Web.Common.Controllers;
+using Umbraco.Extensions;
 
 namespace Portfolio.Core.Controllers.Render
 {
@@ -20,6 +21,10 @@ namespace Portfolio.Core.Controllers.Render
             viewModel.Build(CurrentPage);
             viewModel.BodyText = new HtmlString(contact.BodyText?.ToHtmlString() ??
                                                 string.Empty);
+            viewModel.MetaDescription = new HtmlString(contact.MetaDescription?.ToHtmlString() ??
+                                                string.Empty);
+            viewModel.MetaImage = new HtmlString(contact.MetaImage?.GetCropUrl() ??
+                                                 string.Empty);
             return CurrentTemplate(viewModel);
         }
         

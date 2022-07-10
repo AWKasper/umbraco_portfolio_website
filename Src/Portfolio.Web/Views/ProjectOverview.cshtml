@@ -1,22 +1,27 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@using Portfolio.Core.Models.Umbraco
 @model Portfolio.Core.Models.ViewModels.ProjectOverviewViewModel
 @{
-	Layout = "Main.cshtml";
+    Layout = "Main.cshtml";
 }
 
 @section meta
 {
-	<link rel="stylesheet" href="/css/ProjectOverview.css"/>
+    <meta name="description" content="@Model.MetaDescription">
+    @{ var root = Model?.Content.Root<Home>(); }
+    <meta name="og:image" content="@root.MetaImage.Url()">
+    <meta name="og:description" content="@Model.MetaDescription">
+    <link rel="stylesheet" href="/css/ProjectOverview.css"/>
 }
 
 
 @Model.BodyText
 
 <ul>
-	@foreach (var project in Model.Children)
-	{
-		<li>
-			<a href="@project.Url()">@project.Name</a>
-		</li>
-	}
+    @foreach (var project in Model.Children)
+    {
+        <li>
+            <a href="@project.Url()">@project.Name</a>
+        </li>
+    }
 </ul>

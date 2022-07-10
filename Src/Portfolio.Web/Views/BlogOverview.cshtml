@@ -2,26 +2,30 @@
 @using Portfolio.Core.Models.Umbraco
 @model Portfolio.Core.Models.ViewModels.BlogOverviewViewModel
 @{
-	Layout = "Main.cshtml";
+    Layout = "Main.cshtml";
 }
 
 @section meta
 {
-	<link rel="stylesheet" href="/css/BlogOverview.css"/>
+    <meta name="description" content="@Model.MetaDescription">
+    @{ var root = Model?.Content.Root<Home>(); }
+    <meta name="og:image" content="@root.MetaImage.Url()">
+    <meta name="og:description" content="@Model.MetaDescription">
+    <link rel="stylesheet" href="/css/BlogOverview.css"/>
 }
 
 
 @Model.BodyText
 
 <div class="card-deck">
-	@foreach (var article in Model.Children.Cast<BlogArticle>())
-	{
-		<div class="card">
-			<img class="card-img-top" src="@article.Thumbnail.Url()" style="width:200px" alt="@article.Thumbnail?.Name">
-			<div class="card-body">
-				<h5 class="card-title">@article.Name</h5>
-				<a href="@article.Url()" class="btn btn-primary stretched-link">Go to Article</a>
-			</div>
-		</div>
-	}
+    @foreach (var article in Model.Children.Cast<BlogArticle>())
+    {
+        <div class="card">
+            <img class="card-img-top" src="@article.Thumbnail.Url()" style="width:200px" alt="@article.Thumbnail?.Name">
+            <div class="card-body">
+                <h5 class="card-title">@article.Name</h5>
+                <a href="@article.Url()" class="btn btn-primary stretched-link">Go to Article</a>
+            </div>
+        </div>
+    }
 </div>
