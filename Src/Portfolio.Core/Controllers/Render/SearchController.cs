@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Drawing.Printing;
-using System.Linq;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewEngines;
@@ -54,9 +52,16 @@ namespace Portfolio.Core.Controllers.Render
             viewModel.Results = children;
 
             viewModel.Search = new HtmlString(query);
-            
-            viewModel.MetaDescription = new HtmlString(search.MetaDescription?.ToHtmlString() ??
-                                                       string.Empty);
+
+            var metaDescription = search.MetaDescription?.ToString();
+            viewModel.MetaDescription = metaDescription;
+
+            if (!string.IsNullOrEmpty(metaDescription))
+            {
+                viewModel.MetaDescription = metaDescription.Remove(0, 3)
+                    .Remove(metaDescription.Length - 7);
+            }
+
             viewModel.MetaImage = new HtmlString(search.MetaImage?.GetCropUrl() ??
                                                  string.Empty);
 

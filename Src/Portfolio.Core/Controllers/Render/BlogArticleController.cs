@@ -13,7 +13,7 @@ using Umbraco.Extensions;
 
 namespace Portfolio.Core.Controllers.Render
 {
-    public class BlogArticleController: RenderController
+    public class BlogArticleController : RenderController
     {
         public IActionResult BlogArticle()
         {
@@ -21,25 +21,34 @@ namespace Portfolio.Core.Controllers.Render
             var viewModel = new BlogArticleViewModel();
             viewModel.Build(CurrentPage);
             viewModel.Title = new HtmlString(blogArticle.Title?.ToHtmlString() ??
-                                                string.Empty);
+                                             string.Empty);
             viewModel.Thumbnail = new HtmlString(blogArticle.Thumbnail.GetCropUrl() ??
-                                                     string.Empty);
+                                                 string.Empty);
             viewModel.Author = new HtmlString(blogArticle.Author?.ToHtmlString() ??
-                                                string.Empty);
+                                              string.Empty);
             viewModel.PublishDate = new HtmlString(blogArticle.PublishDate.ToLongDateString());
             viewModel.AuthorPicture = new HtmlString(blogArticle.AuthorPicture?.GetCropUrl() ??
-                                                string.Empty);
+                                                     string.Empty);
             viewModel.BodyText = new HtmlString(blogArticle.BodyText?.ToHtmlString() ??
                                                 string.Empty);
             viewModel.MultiNode = blogArticle.MultiNode as List<IPublishedContent>;
-            viewModel.MetaDescription = new HtmlString(blogArticle.MetaDescription?.ToHtmlString() ??
-                                                       string.Empty);
+
+            var metaDescription = blogArticle.MetaDescription?.ToString();
+            viewModel.MetaDescription = metaDescription;
+
+            if (!string.IsNullOrEmpty(metaDescription))
+            {
+                viewModel.MetaDescription = metaDescription.Remove(0, 3)
+                    .Remove(metaDescription.Length - 7);
+            }
+
             viewModel.MetaImage = new HtmlString(blogArticle.MetaImage?.GetCropUrl() ??
                                                  string.Empty);
             return CurrentTemplate(viewModel);
         }
-        
-        public BlogArticleController(ILogger<RenderController> logger, ICompositeViewEngine compositeViewEngine, IUmbracoContextAccessor umbracoContextAccessor) : base(logger, compositeViewEngine, umbracoContextAccessor)
+
+        public BlogArticleController(ILogger<RenderController> logger, ICompositeViewEngine compositeViewEngine,
+            IUmbracoContextAccessor umbracoContextAccessor) : base(logger, compositeViewEngine, umbracoContextAccessor)
         {
         }
     }
