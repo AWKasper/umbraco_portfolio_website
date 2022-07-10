@@ -9,8 +9,9 @@
 {
     <meta name="description" content="@Model.MetaDescription">
     @{ var root = Model?.Content.Root<Home>(); }
-    <meta name="og:image" content="@root.MetaImage.Url()">
-    <meta name="og:description" content="@Model.MetaDescription">
+    <meta property="og:image" content="@root.MetaImage.Url()">
+    <meta property="og:description" content="@Model.MetaDescription">
+    <meta property="og:type" content="website">
     <link rel="stylesheet" href="/css/Home.css"/>
 }
 

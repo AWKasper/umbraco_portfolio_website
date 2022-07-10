@@ -9,11 +9,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0d6efd">
     <title>@Model.PageTitle</title>
-    <meta name="og:title" content="@Model.PageTitle">
-    <meta name="og:site_name" content="A. Kasper">
-    <meta name="og:type" content="website">
-    
+    <meta property="og:title" content="@Model.PageTitle">
+    @{ var url = "https://ak-portfolio.azurewebsites.net" + @Model.Content.Url();}
+    <meta property="og:url" content="@url">
+    <meta property="og:site_name" content="A. Kasper">
+
     <!--other metadata and stylesheets that can be added in templates -->
     @await RenderSectionAsync("meta", required: false)
 
