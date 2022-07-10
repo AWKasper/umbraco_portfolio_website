@@ -22,6 +22,10 @@ namespace Portfolio.Core.Controllers.Render
             viewModel.BodyText = new HtmlString(blogOverview.BodyText?.ToHtmlString() ??
                                                 string.Empty);
             viewModel.Children = viewModel.Content.ChildrenOfType("blogArticle").ToList();
+            viewModel.MetaDescription = new HtmlString(blogOverview.MetaDescription?.ToHtmlString() ??
+                                                       string.Empty);
+            viewModel.MetaImage = new HtmlString(blogOverview.MetaImage?.GetCropUrl() ??
+                                                 string.Empty);
             return CurrentTemplate(viewModel);
         }
         

@@ -1,20 +1,21 @@
 ﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@using Portfolio.Core.Models.Umbraco
 @model Portfolio.Core.Models.ViewModels.ProjectDetailViewModel
 @{
-	Layout = "Main.cshtml";
-	
-	Model.PageTitle = "ProjectDetail";
+    Layout = "Main.cshtml";
 }
 
-<head>
-	<title>@Model.PageTitle</title>
-	<link rel="stylesheet" href="/css/ProjectDetail.css"/>
-</head>
+@section meta
+{
+    <meta name="description" content="@Model.MetaDescription">
+    @{ var root = Model?.Content.Root<Home>(); }
+    <meta name="og:image" content="@root.MetaImage.Url()">
+    <meta name="og:description" content="@Model.MetaDescription">
+    <meta name="author" content="@Model.Author.Value?.Remove(0, 3).Remove(@Model.Author.Value.Length - 7)">
+    <link rel="stylesheet" href="/css/ProjectDetail.css"/>
+}
 
-<body>
 
-@Model.Title
+<h1>@Model.Title</h1>
 
 @Model.Project
-
-</body>

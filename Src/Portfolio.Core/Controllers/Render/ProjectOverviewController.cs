@@ -23,6 +23,10 @@ namespace Portfolio.Core.Controllers.Render
             viewModel.BodyText = new HtmlString(projectOverview.BodyText?.ToHtmlString() ??
                                                 string.Empty);
             viewModel.Children = viewModel.Content.ChildrenOfType("projectDetail").ToList();
+            viewModel.MetaDescription = new HtmlString(projectOverview.MetaDescription?.ToHtmlString() ??
+                                                       string.Empty);
+            viewModel.MetaImage = new HtmlString(projectOverview.MetaImage?.GetCropUrl() ??
+                                                 string.Empty);
             return CurrentTemplate(viewModel);
         }
         

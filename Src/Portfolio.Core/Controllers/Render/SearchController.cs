@@ -54,6 +54,11 @@ namespace Portfolio.Core.Controllers.Render
             viewModel.Results = children;
 
             viewModel.Search = new HtmlString(query);
+            
+            viewModel.MetaDescription = new HtmlString(search.MetaDescription?.ToHtmlString() ??
+                                                       string.Empty);
+            viewModel.MetaImage = new HtmlString(search.MetaImage?.GetCropUrl() ??
+                                                 string.Empty);
 
             return CurrentTemplate(viewModel);
         }

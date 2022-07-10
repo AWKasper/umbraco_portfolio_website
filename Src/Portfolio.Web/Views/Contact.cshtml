@@ -2,21 +2,23 @@
 @using Portfolio.Core.Controllers.Surface
 @using Portfolio.Core.Models.FormModels
 @using System.Drawing.Printing
+@using Portfolio.Core.Models.Umbraco
 @model Portfolio.Core.Models.ViewModels.ContactViewModel
 @{
     Layout = "Main.cshtml";
 
-    Model.PageTitle = "Contact";
-
     var contactFormModel = new ContactFormModel();
 }
 
-<head>
-    <title>@Model.PageTitle</title>
-    <link rel="stylesheet" href="/css/AboutMe.css"/>
-</head>
+@section meta
+{
+    <meta name="description" content="@Model.MetaDescription">
+    @{ var root = Model?.Content.Root<Home>(); }
+    <meta name="og:image" content="@root.MetaImage.Url()">
+    <meta name="og:description" content="@Model.MetaDescription">
+    <link rel="stylesheet" href="/css/Contact.css"/>
+}
 
-<body>
 
 @Model.BodyText
 
@@ -48,5 +50,3 @@
         </div>
     </div>
 }
-
-</body>

@@ -7,6 +7,7 @@ using Portfolio.Core.Models.Umbraco;
 using Portfolio.Core.Models.ViewModels;
 using Umbraco.Cms.Core.Web;
 using Umbraco.Cms.Web.Common.Controllers;
+using Umbraco.Extensions;
 
 namespace Portfolio.Core.Controllers.Render
 {
@@ -20,8 +21,14 @@ namespace Portfolio.Core.Controllers.Render
             viewModel.Build(CurrentPage);
             viewModel.Title = new HtmlString(projectDetail.Title?.ToHtmlString() ??
                                                string.Empty);
+            viewModel.Author = new HtmlString(projectDetail.Author?.ToHtmlString() ??
+                                             string.Empty);
             viewModel.Project = new HtmlString(projectDetail.Project?.ToHtmlString() ??
                                                 string.Empty);
+            viewModel.MetaDescription = new HtmlString(projectDetail.MetaDescription?.ToHtmlString() ??
+                                                       string.Empty);
+            viewModel.MetaImage = new HtmlString(projectDetail.MetaImage?.GetCropUrl() ??
+                                                 string.Empty);
             return CurrentTemplate(viewModel);
         }
         

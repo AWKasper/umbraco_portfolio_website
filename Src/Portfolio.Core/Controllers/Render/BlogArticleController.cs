@@ -26,13 +26,16 @@ namespace Portfolio.Core.Controllers.Render
                                                      string.Empty);
             viewModel.Author = new HtmlString(blogArticle.Author?.ToHtmlString() ??
                                                 string.Empty);
-            viewModel.PublishDate = new HtmlString(blogArticle.PublishDate.ToLongDateString()??
-                                                   string.Empty);
+            viewModel.PublishDate = new HtmlString(blogArticle.PublishDate.ToLongDateString());
             viewModel.AuthorPicture = new HtmlString(blogArticle.AuthorPicture?.GetCropUrl() ??
                                                 string.Empty);
             viewModel.BodyText = new HtmlString(blogArticle.BodyText?.ToHtmlString() ??
                                                 string.Empty);
             viewModel.MultiNode = blogArticle.MultiNode as List<IPublishedContent>;
+            viewModel.MetaDescription = new HtmlString(blogArticle.MetaDescription?.ToHtmlString() ??
+                                                       string.Empty);
+            viewModel.MetaImage = new HtmlString(blogArticle.MetaImage?.GetCropUrl() ??
+                                                 string.Empty);
             return CurrentTemplate(viewModel);
         }
         
