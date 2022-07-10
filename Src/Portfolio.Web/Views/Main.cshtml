@@ -11,6 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@Model.PageTitle</title>
     <meta name="og:title" content="@Model.PageTitle">
+    @{ var url = "https://ak-portfolio.azurewebsites.net" + @Model.Content.Url();}
+    <meta name="og:url" content="@url">
     <meta name="og:site_name" content="A. Kasper">
     <meta name="og:type" content="website">
     
