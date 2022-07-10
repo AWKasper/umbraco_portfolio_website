@@ -14,7 +14,6 @@ namespace Portfolio.Core.Controllers.Render
 {
     public class ProjectOverviewController : RenderController
     {
-        
         public IActionResult ProjectOverview()
         {
             var projectOverview = (ProjectOverview)CurrentPage;
@@ -23,14 +22,23 @@ namespace Portfolio.Core.Controllers.Render
             viewModel.BodyText = new HtmlString(projectOverview.BodyText?.ToHtmlString() ??
                                                 string.Empty);
             viewModel.Children = viewModel.Content.ChildrenOfType("projectDetail").ToList();
-            viewModel.MetaDescription = new HtmlString(projectOverview.MetaDescription?.ToHtmlString() ??
-                                                       string.Empty);
+
+            var metaDescription = projectOverview.MetaDescription?.ToString();
+            viewModel.MetaDescription = metaDescription;
+
+            if (!string.IsNullOrEmpty(metaDescription))
+            {
+                viewModel.MetaDescription = metaDescription.Remove(0, 3)
+                    .Remove(metaDescription.Length - 7);
+            }
+
             viewModel.MetaImage = new HtmlString(projectOverview.MetaImage?.GetCropUrl() ??
                                                  string.Empty);
             return CurrentTemplate(viewModel);
         }
-        
-        public ProjectOverviewController(ILogger<RenderController> logger, ICompositeViewEngine compositeViewEngine, IUmbracoContextAccessor umbracoContextAccessor) : base(logger, compositeViewEngine, umbracoContextAccessor)
+
+        public ProjectOverviewController(ILogger<RenderController> logger, ICompositeViewEngine compositeViewEngine,
+            IUmbracoContextAccessor umbracoContextAccessor) : base(logger, compositeViewEngine, umbracoContextAccessor)
         {
         }
     }

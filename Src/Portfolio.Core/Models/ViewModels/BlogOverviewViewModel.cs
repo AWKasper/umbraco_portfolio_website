@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Html;
-using Portfolio.Core.Models.Umbraco;
 using Umbraco.Cms.Core.Models.PublishedContent;
 
 namespace Portfolio.Core.Models.ViewModels

@@ -13,7 +13,6 @@ namespace Portfolio.Core.Controllers.Render
 {
     public class AboutMeController : RenderController
     {
-        
         public IActionResult AboutMe()
         {
             var aboutMe = (AboutMe)CurrentPage;
@@ -21,14 +20,23 @@ namespace Portfolio.Core.Controllers.Render
             viewModel.Build(CurrentPage);
             viewModel.BodyText = new HtmlString(aboutMe.BodyText?.ToHtmlString() ??
                                                 string.Empty);
-            viewModel.MetaDescription = new HtmlString(aboutMe.MetaDescription?.ToHtmlString() ??
-                                                       string.Empty);
+
+            var metaDescription = aboutMe.MetaDescription?.ToString();
+            viewModel.MetaDescription = metaDescription;
+
+            if (!string.IsNullOrEmpty(metaDescription))
+            {
+                viewModel.MetaDescription = metaDescription.Remove(0, 3)
+                    .Remove(metaDescription.Length - 7);
+            }
+
             viewModel.MetaImage = new HtmlString(aboutMe.MetaImage?.GetCropUrl() ??
                                                  string.Empty);
             return CurrentTemplate(viewModel);
         }
-        
-        public AboutMeController(ILogger<RenderController> logger, ICompositeViewEngine compositeViewEngine, IUmbracoContextAccessor umbracoContextAccessor) : base(logger, compositeViewEngine, umbracoContextAccessor)
+
+        public AboutMeController(ILogger<RenderController> logger, ICompositeViewEngine compositeViewEngine,
+            IUmbracoContextAccessor umbracoContextAccessor) : base(logger, compositeViewEngine, umbracoContextAccessor)
         {
         }
     }

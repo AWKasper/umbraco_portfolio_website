@@ -12,7 +12,7 @@ using Umbraco.Extensions;
 
 namespace Portfolio.Core.Controllers.Render
 {
-    public class BlogOverviewController: RenderController
+    public class BlogOverviewController : RenderController
     {
         public IActionResult BlogOverview()
         {
@@ -22,14 +22,23 @@ namespace Portfolio.Core.Controllers.Render
             viewModel.BodyText = new HtmlString(blogOverview.BodyText?.ToHtmlString() ??
                                                 string.Empty);
             viewModel.Children = viewModel.Content.ChildrenOfType("blogArticle").ToList();
-            viewModel.MetaDescription = new HtmlString(blogOverview.MetaDescription?.ToHtmlString() ??
-                                                       string.Empty);
+
+            var metaDescription = blogOverview.MetaDescription?.ToString();
+            viewModel.MetaDescription = metaDescription;
+
+            if (!string.IsNullOrEmpty(metaDescription))
+            {
+                viewModel.MetaDescription = metaDescription.Remove(0, 3)
+                    .Remove(metaDescription.Length - 7);
+            }
+
             viewModel.MetaImage = new HtmlString(blogOverview.MetaImage?.GetCropUrl() ??
                                                  string.Empty);
             return CurrentTemplate(viewModel);
         }
-        
-        public BlogOverviewController(ILogger<RenderController> logger, ICompositeViewEngine compositeViewEngine, IUmbracoContextAccessor umbracoContextAccessor) : base(logger, compositeViewEngine, umbracoContextAccessor)
+
+        public BlogOverviewController(ILogger<RenderController> logger, ICompositeViewEngine compositeViewEngine,
+            IUmbracoContextAccessor umbracoContextAccessor) : base(logger, compositeViewEngine, umbracoContextAccessor)
         {
         }
     }

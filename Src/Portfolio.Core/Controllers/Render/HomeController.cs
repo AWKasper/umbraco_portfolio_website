@@ -11,7 +11,7 @@ using Umbraco.Extensions;
 
 namespace Portfolio.Core.Controllers.Render
 {
-    public class HomeController: RenderController
+    public class HomeController : RenderController
     {
         public IActionResult Home()
         {
@@ -20,16 +20,24 @@ namespace Portfolio.Core.Controllers.Render
             viewModel.Build(CurrentPage);
             viewModel.BodyText = new HtmlString(home.BodyText?.ToHtmlString() ??
                                                 string.Empty);
-            viewModel.MetaDescription = new HtmlString(home.MetaDescription?.ToHtmlString() ??
-                                                       string.Empty);
+
+            var metaDescription = home.MetaDescription?.ToString();
+            viewModel.MetaDescription = metaDescription;
+
+            if (!string.IsNullOrEmpty(metaDescription))
+            {
+                viewModel.MetaDescription = metaDescription.Remove(0, 3)
+                    .Remove(metaDescription.Length - 7);
+            }
+
             viewModel.MetaImage = new HtmlString(home.MetaImage?.GetCropUrl() ??
                                                  string.Empty);
             return CurrentTemplate(viewModel);
         }
-        
-        public HomeController(ILogger<RenderController> logger, ICompositeViewEngine compositeViewEngine, IUmbracoContextAccessor umbracoContextAccessor) : base(logger, compositeViewEngine, umbracoContextAccessor)
+
+        public HomeController(ILogger<RenderController> logger, ICompositeViewEngine compositeViewEngine,
+            IUmbracoContextAccessor umbracoContextAccessor) : base(logger, compositeViewEngine, umbracoContextAccessor)
         {
-            
         }
     }
 }
